@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xlayer Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a202c, #2d3748); /* Dark blue-gray to a slightly lighter one */
+            color: #e2e8f0; /* Lighter text for dark background */
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #6366f1, #d946ef, #a855f7); /* Blue, magenta, purple */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-heading {
+            color: #f0f4f8; /* Lighter heading for sections */
+        }
+
+        /* Scrollbar Hiding (optional, for aesthetics) */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        /* Animations */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.6s ease-out forwards;
+        }
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse-slow {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.95; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes blob {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .animate-blob.delay-1 {
+            animation-delay: 1.5s;
+        }
+        .animate-blob.delay-2 {
+            animation-delay: 3s;
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 10s infinite ease-in-out;
+        }
+
+        /* Navigation Specific Styles */
+        .nav-link-group:hover .nav-link-underline {
+            transform: scaleX(1);
+        }
+        .nav-link-underline {
+            background-color: #d946ef; /* Purple from gradient */
+        }
+        .mobile-menu-btn {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent light */
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .mobile-menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section Specific Styles */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(26, 32, 44, 0.7) 0%, rgba(45, 55, 72, 0.9) 100%);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); /* Stronger shadow */
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 0;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+            z-index: -1;
+        }
+        .btn-primary:hover::after {
+            width: 200%;
+            opacity: 1;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.8);
+        }
+        .scroll-button {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            border: 1px solid rgba(100, 116, 139, 0.4);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            color: #cbd5e0;
+        }
+        .scroll-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #a855f7;
+        }
+
+        /* Product Cards & General Content Boxes */
+        .product-card {
+            background-color: rgba(45, 55, 72, 0.6); /* Semi-transparent dark background */
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            border: 1px solid rgba(100, 116, 139, 0.4); /* Subtle, lighter border */
+            transition: all 0.3s ease;
+            color: #cbd5e0; /* Light text for card content */
+        }
+        .product-card:hover {
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+            border-color: #6366f1; /* Highlight border on hover */
+        }
+        .product-card img {
+            border: 1px solid rgba(147, 51, 234, 0.3); /* Subtle purple border for images */
+        }
+        .product-card.bg-indigo-700 img, .product-card.bg-purple-700 img {
+            border-color: rgba(255, 255, 255, 0.2); /* Lighter border for colored cards */
+        }
+
+
+        /* Footer Specific Styles */
+        .footer-heading {
+            color: #ffffff; /* White footer headings */
+        }
+        .footer-text, .footer-link {
+            color: #cbd5e0; /* Lighter footer text and links */
+        }
+        .footer-link:hover {
+            color: #9f7aea; /* Hover effect for footer links */
+        }
+        .footer-social-icon {
+            color: #9f7aea; /* Social icons color */
+        }
+        .footer-social-icon:hover {
+            color: #d946ef; /* Social icons hover color */
+        }
+        .footer-copy {
+            color: #a0aec0; /* Copyright text color */
+        }
+        .container {
+            max-width: 1280px; /* Max width for content */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-md px-6 py-4 shadow-lg flex items-center justify-between lg:px-12">
+        <div class="flex items-center space-x-4">
+            <img src="images/Xlayer_logo_2-removebg-preview.png" alt="Xlayer Logo" class="w-20 h-auto" />
+            <span class="text-2xl font-extrabold gradient-text hidden md:block">Xlayer Technologies</span>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="about_us.html" class="text-gray-300 hover:text-white transition duration-300 relative group nav-link-group">
+                About Us
+                <span class="absolute left-0 bottom-0 w-full h-0.5 nav-link-underline scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </a>
+            <a href="our_works.html" class="text-gray-300 hover:text-white transition duration-300 relative group nav-link-group">
+                Our Works
+                <span class="absolute left-0 bottom-0 w-full h-0.5 nav-link-underline scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </a>
+            <a href="case_studies.html" class="text-gray-300 hover:text-white transition duration-300 relative group nav-link-group">
+                Case Studies
+                <span class="absolute left-0 bottom-0 w-full h-0.5 nav-link-underline scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            
+            <a href="get_in_touch.html" class="btn-primary px-6 py-2 rounded-lg text-white font-semibold shadow-lg">
+                Get In Touch
+            </a>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden mobile-menu-btn focus:outline-none">
+            <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900/90 backdrop-blur-md z-40 hidden md:hidden flex flex-col items-center justify-center space-y-8 text-xl">
+        <a href="about_us.html" class="text-gray-200 hover:text-white transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
+        <a href="our_works.html" class="text-gray-200 hover:text-white transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Our Works</a>
+        <a href="case_studies.html" class="text-gray-200 hover:text-white transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Case Studies</a>
+        <a href="get_in_touch.html" class="btn-primary px-8 py-3 rounded-lg text-white font-semibold shadow-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Get In Touch</a>
+    </div>
+
+    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 w-full h-full object-cover z-0 bg-gradient-to-br from-indigo-900 to-purple-900 animate-pulse-slow">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500 rounded-full mix-blend-screen opacity-10 animate-blob"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-40 h-40 bg-purple-500 rounded-full mix-blend-screen opacity-10 animate-blob delay-1"></div>
+            <div class="absolute top-1/2 left-1/2 w-24 h-24 bg-pink-500 rounded-full mix-blend-screen opacity-10 animate-blob delay-2"></div>
+        </div>
+        <div class="absolute inset-0 hero-overlay z-10"></div>
+        <div class="relative z-20 text-center text-white px-4 max-w-3xl">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                You Imagine, We Make It Happen
+            </h1>
+            <p class="text-lg md:text-xl font-light leading-relaxed mb-8 animate-fade-in-up delay-200 text-gray-200">
+                We craft top-notch solutions in the most frugal way,
+                driving innovation and tangible results for your business.
+            </p>
+            <a href="#contact" class="btn-primary px-8 py-3 rounded-lg text-white font-semibold shadow-lg text-lg animate-fade-in-up delay-400">
+                Start Your Project
+            </a>
+        </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent my-16"></div>
+
+    <section id="works" class="max-w-7xl mx-auto px-6 py-20">
+        <h2 class="text-4xl font-bold text-center mb-16 section-heading">Our Products</h2>
+
+        <div class="grid md:grid-cols-2 gap-12 mb-20 items-center product-card rounded-2xl p-8 shadow-xl">
+            <div class="order-2 md:order-1 text-center">
+                <img src="image1.png" alt="DTour Image" class="rounded-lg mx-auto w-full max-h-96 object-contain shadow-lg border border-purple-600/30" />
+            </div>
+            <div class="order-1 md:order-2">
+                <h3 class="text-3xl font-bold gradient-text mb-4">DTour</h3>
+                <p class="mb-4 text-gray-300 leading-relaxed">
+                    Our cloud-based solution designed to work seamlessly even with slow internet connections,
+                    together with a robust offline mode, is perfect for the digital transformation of tourism,
+                    especially in the North Eastern States of India. It ensures continuity and accessibility
+                    regardless of connectivity challenges.
+                </p>
+                <div class="flex items-center text-sm text-gray-400">
+                    <span class="mr-2">Used by:</span>
+                    <img src="usedby1.png" alt="Used by 1" class="inline h-6 ml-3 opacity-80" />
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 mb-20 items-center product-card rounded-2xl p-8 shadow-xl">
+            <div class="order-1 md:order-1">
+                <h3 class="text-3xl font-bold gradient-text mb-4">JINIFIX</h3>
+                <p class="mb-4 text-gray-300 leading-relaxed">
+                    Revolutionize your retail experience with our In-store IoT Integration.
+                    JINIFIX provides smart solutions for inventory management, customer engagement,
+                    and operational efficiency, giving you real-time insights to optimize your business.
+                </p>
+                <div class="flex items-center text-sm text-gray-400">
+                    <span class="mr-2">Used by:</span>
+                    <img src="usedby2.png" alt="Used by 2" class="inline h-6 ml-3 opacity-80" />
+                </div>
+            </div>
+            <div class="order-2 md:order-2 text-center">
+                <img src="image2.png" alt="JINIFIX Image" class="rounded-lg mx-auto w-full max-h-96 object-contain shadow-lg border border-purple-600/30" />
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 mb-20 items-center product-card rounded-2xl p-8 shadow-xl">
+            <div class="order-2 md:order-1 text-center">
+                <img src="image3.png" alt="TrakiGa Image" class="rounded-lg mx-auto w-full max-h-96 object-contain shadow-lg border border-purple-600/30" />
+            </div>
+            <div class="order-1 md:order-2">
+                <h3 class="text-3xl font-bold gradient-text mb-4">TrakiGa</h3>
+                <p class="mb-4 text-gray-300 leading-relaxed">
+                    TrakiGa is a cutting-edge GPS & UWB device-based AVLS (Automatic Vehicle Location System) product
+                    designed for precise tracking of public transport vehicles. Ensure safety, optimize routes,
+                    and enhance fleet management with real-time location data and advanced analytics.
+                </p>
+                <div class="flex items-center text-sm text-gray-400">
+                    <span class="mr-2">Used by:</span>
+                    <img src="usedby3.png" alt="Used by 3" class="inline h-6 ml-3 opacity-80" />
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center product-card rounded-2xl p-8 shadow-xl">
+            <div class="order-1 md:order-1">
+                <h3 class="text-3xl font-bold gradient-text mb-4">Schoolery</h3>
+                <p class="mb-4 text-gray-300 leading-relaxed">
+                    Schoolery offers a comprehensive education solution aimed at streamlining operations
+                    and significantly improving student outcomes. From administrative tasks to learning management,
+                    it's designed to create a more efficient and effective educational environment.
+                </p>
+                <div class="flex items-center text-sm text-gray-400">
+                    </div>
+            </div>
+            <div class="order-2 md:order-2 text-center">
+                <img src="image4.png" alt="Schoolery Image" class="rounded-lg mx-auto w-full max-h-96 object-contain shadow-lg border border-purple-600/30" />
+            </div>
+        </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent my-16"></div>
+
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-gray-800 rounded-lg shadow-2xl shadow-purple-900/50">
+        <h2 class="text-4xl font-bold section-heading mb-10 text-center">Our Recent Works</h2>
+
+        <div class="relative">
+            <button onclick="scrollLeftRecentWorks()" class="absolute -left-4 top-1/2 transform -translate-y-1/2 rounded-full shadow-xl p-3 z-10 focus:outline-none scroll-button">
+                <span class="text-2xl text-gray-300">&#10094;</span>
+            </button>
+
+            <div id="recentWorksSlider" class="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth px-2 md:px-10 py-4">
+                <div class="min-w-[280px] bg-gray-700 rounded-xl shadow-lg p-6 text-center border border-gray-600 hover:shadow-2xl hover:border-purple-500 transition product-card">
+                    <img src="image1.png" alt="Agartala" class="w-full h-40 object-cover mb-4 rounded-lg border border-gray-600" />
+                    <p class="font-medium text-gray-200">Agartala Smart City</p>
+                </div>
+                <div class="min-w-[280px] bg-gray-700 rounded-xl shadow-lg p-6 text-center border border-gray-600 hover:shadow-2xl hover:border-purple-500 transition product-card">
+                    <img src="image2.png" alt="Tata" class="w-full h-40 object-cover mb-4 rounded-lg border border-gray-600" />
+                    <p class="font-medium text-gray-200">Tata Advance System Limited</p>
+                </div>
+                <div class="min-w-[280px] bg-indigo-700 rounded-xl shadow-lg p-6 text-center text-white border border-indigo-800 hover:shadow-2xl hover:border-purple-500 transition product-card">
+                    <img src="image3.png" alt="Defense" class="w-full h-40 object-cover mb-4 rounded-lg border border-indigo-600" />
+                    <p class="font-medium">Defense App</p>
+                </div>
+                <div class="min-w-[280px] bg-gray-700 rounded-xl shadow-lg p-6 text-center border border-gray-600 hover:shadow-2xl hover:border-purple-500 transition product-card">
+                    <img src="image4.png" alt="Project 4" class="w-full h-40 object-cover mb-4 rounded-lg border border-gray-600" />
+                    <p class="font-medium text-gray-200">Healthcare Platform</p>
+                </div>
+                <div class="min-w-[280px] bg-gray-700 rounded-xl shadow-lg p-6 text-center border border-gray-600 hover:shadow-2xl hover:border-purple-500 transition product-card">
+                    <img src="image5.png" alt="Project 5" class="w-full h-40 object-cover mb-4 rounded-lg border border-gray-600" />
+                    <p class="font-medium text-gray-200">Banking App</p>
+                </div>
+                <div class="min-w-[280px] bg-purple-700 rounded-xl shadow-lg p-6 text-center text-white border border-purple-800 hover:shadow-2xl hover:border-indigo-500 transition product-card">
+                    <img src="image6.png" alt="Project 6" class="w-full h-40 object-cover mb-4 rounded-lg border border-purple-600" />
+                    <p class="font-medium">EdTech Portal</p>
+                </div>
+                <div class="min-w-[280px] bg-gray-700 rounded-xl shadow-lg p-6 text-center border border-gray-600 hover:shadow-2xl hover:border-purple-500 transition product-card">
+                    <img src="image7.png" alt="Project 7" class="w-full h-40 object-cover mb-4 rounded-lg border border-gray-600" />
+                    <p class="font-medium text-gray-200">Transport Tracker</p>
+                </div>
+            </div>
+
+            <button onclick="scrollRightRecentWorks()" class="absolute -right-4 top-1/2 transform -translate-y-1/2 rounded-full shadow-xl p-3 z-10 focus:outline-none scroll-button">
+                <span class="text-2xl text-gray-300">&#10095;</span>
+            </button>
+        </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent my-16"></div>
+
+    <section id="case-studies" class="max-w-7xl mx-auto px-6 py-20">
+        <h2 class="text-4xl font-bold section-heading mb-10 text-center">Our Case Studies</h2>
+
+        <div class="mb-16 bg-gray-800 rounded-lg shadow-2xl p-8 border border-gray-700 shadow-purple-900/40">
+            <img src="meghalaya.png" alt="Meghalaya Tourism" class="w-full h-80 object-cover rounded-lg mb-6 shadow-xl border border-purple-600/30" />
+            <h3 class="text-3xl font-bold section-heading mb-3 text-white">Meghalaya Tourism</h3>
+            <div class="flex flex-wrap gap-3 mb-5">
+                <span class="px-4 py-1.5 text-sm rounded-full bg-purple-800 text-purple-200 font-medium border border-purple-700">Web Development</span>
+                <span class="px-4 py-1.5 text-sm rounded-full bg-blue-800 text-blue-200 font-medium border border-blue-700">App Development</span>
+                <span class="px-4 py-1.5 text-sm rounded-full bg-pink-800 text-pink-200 font-medium border border-pink-700">UI/UX Enhancement</span>
+            </div>
+            <p class="text-gray-300 text-lg leading-relaxed max-w-4xl">
+                Discover how Xlayer developed a custom Meghalaya Tourism app that provides multiple services through a unified platform for all stakeholders and delivers real-time data. Learn how our innovative solution enhances visitor experiences and streamlines operations.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-gray-800 rounded-lg shadow-2xl p-8 border border-gray-700 shadow-blue-900/40">
+                <img src="tata.png" alt="TATA Advance Systems" class="w-full h-64 object-cover rounded-lg mb-6 shadow-xl border border-blue-600/30" />
+                <h3 class="text-2xl font-bold section-heading mb-3 text-white">TATA Advance Systems</h3>
+                <div class="flex flex-wrap gap-3 mb-4">
+                    <span class="px-4 py-1.5 text-sm rounded-full bg-indigo-800 text-indigo-200 font-medium border border-indigo-700">System Architecture</span>
+                    <span class="px-4 py-1.5 text-sm rounded-full bg-orange-800 text-orange-200 font-medium border border-orange-700">Hardware Scoping</span>
+                    <span class="px-4 py-1.5 text-sm rounded-full bg-purple-800 text-purple-200 font-medium border border-purple-700">Embedded Graphics</span>
+                </div>
+                <p class="text-gray-300 text-base leading-relaxed">
+                    IPMS implementation using Linux on ARM/Mix device, GUI on Qt/QML. Integration with MPPT, BMS, Generator over RS485/Modbus. This project showcases our expertise in complex embedded systems.
+                </p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg shadow-2xl p-8 border border-gray-700 shadow-green-900/40">
+                <img src="agartala.png" alt="Agartala Smart City" class="w-full h-64 object-cover rounded-lg mb-6 shadow-xl border border-green-600/30" />
+                <h3 class="text-2xl font-bold section-heading mb-3 text-white">Agartala Smart City</h3>
+                <div class="flex flex-wrap gap-3 mb-4">
+                    <span class="px-4 py-1.5 text-sm rounded-full bg-green-800 text-green-200 font-medium border border-green-700">Solution Development</span>
+                    <span class="px-4 py-1.5 text-sm rounded-full bg-yellow-800 text-yellow-200 font-medium border border-yellow-700">UI/UX Design</span>
+                    <span class="px-4 py-1.5 text-sm rounded-full bg-pink-800 text-pink-200 font-medium border border-pink-700">Product Design</span>
+                </div>
+                <p class="text-gray-300 text-base leading-relaxed">
+                    Explore Agartala Smart City’s Transit Management System with AVLS, PIS, and ITS for real-time tracking, bus ETAs, and optimized urban mobility. This project exemplifies our commitment to smart city solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent my-16"></div>
+
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-gray-800 rounded-lg shadow-2xl shadow-indigo-900/50 relative">
+        <h2 class="text-4xl font-bold mb-4 text-center section-heading">Our Services</h2>
+        <p class="text-gray-400 mb-16 text-center text-lg">Rapid Solutioning With Our Deep Technology Expertise</p>
+
+        <button onclick="scrollLeftServices()" class="absolute left-2 top-[55%] transform -translate-y-1/2 bg-gray-700 text-gray-300 rounded-full shadow p-2 z-10 md:hidden">
+            &#10094;
+        </button>
+        <button onclick="scrollRightServices()" class="absolute right-2 top-[55%] transform -translate-y-1/2 bg-gray-700 text-gray-300 rounded-full shadow p-2 z-10 md:hidden">
+            &#10095;
+        </button>
+
+        <div id="servicesSlider" class="flex md:grid overflow-x-auto md:overflow-visible space-x-6 md:space-x-0 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 scroll-smooth scrollbar-hide">
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">✦</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">AI Expertise</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Unlock smarter solutions with our AI engineering. We deliver cutting-edge AI-driven insights and automation to elevate your business.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">⚙️</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">UI/UX Design</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Craft seamless, user-friendly interfaces with xLayer, where design meets functionality for a superior digital experience.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">📦</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">Full Product Builds</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    xLayer offers comprehensive end-to-end product development with seamless support from concept to launch.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">📱</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">App Development</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Custom-built apps for seamless launches, user engagement, and scalable growth with xLayer.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">🌐</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">Web Development</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Robust, scalable websites built with cutting-edge technologies and best practices for optimal performance.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">🚀</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">MVP Development</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Transform your vision into a market-ready product with xLayer. We guide you from concept to launch and product-market fit.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">📈</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">Data System</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Turn your data into actionable insights with xLayer. We help you build, optimize, and leverage data systems for smarter decisions.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">🔬</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">User Testing</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    Our user testing services unlock actionable insights. We deliver thorough testing and analysis to enhance your product’s success.
+                </p>
+            </div>
+
+            <div class="min-w-[270px] flex-shrink-0 md:min-w-0 product-card rounded-lg p-6 hover:shadow-xl transition">
+                <div class="text-4xl mb-4 gradient-text">🔌</div>
+                <h3 class="font-semibold text-xl mb-2 section-heading">Embedded System</h3>
+                <p class="text-base text-gray-300 leading-relaxed">
+                    xLayer Technologies delivers efficient embedded solutions for seamless integration and optimized device performance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent my-16"></div>
+
+    <footer id="contact" class="pt-16 md:pt-20 pb-8 bg-gradient-to-tr from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h3 class="text-md font-semibold uppercase tracking-wider mb-5 footer-heading text-white">Registered Address</h3>
+                    <div class="space-y-4 text-sm text-gray-400">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 shrink-0 mt-0.5 text-purple-400" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /> </svg>
+                            <p class="leading-relaxed">No 54, Bancha, 2nd A Main, 3rd Cross, Venxattar Layout, D S Palvo Extension, Bannerghatta Road, Bangalore – 560 076, India</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 shrink-0 mt-0.5 text-purple-400" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /> </svg>
+                            <p class="leading-relaxed">5th Floor, IT Park Rd, Indira Nagar, 76 Tilla, Agartala, Tripura – 785008, India</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 shrink-0 mt-0.5 text-purple-400" viewBox="0 0 20 20" fill="currentColor"> <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /> </svg>
+                            <a href="mailto:contact@xlayertechnologies.com" class="text-purple-300 hover:text-white transition duration-300">contact@xlayertechnologies.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-md font-semibold uppercase tracking-wider mb-5 footer-heading text-white">Company</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#works" class="text-gray-400 hover:text-white transition duration-300">Our Works</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white transition duration-300">Our Process</a></li>
+                        <li><a href="#case-studies" class="text-gray-400 hover:text-white transition duration-300">Case Studies</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-md font-semibold uppercase tracking-wider mb-5 footer-heading text-white">Connect With Us</h3>
+                    <div class="flex space-x-5">
+                        <a href="#" title="LinkedIn" class="text-purple-300 hover:text-white hover:scale-110 block transform transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="#" title="Twitter" class="text-purple-300 hover:text-white hover:scale-110 block transform transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        </a>
+                        <a href="#" title="Facebook" class="text-purple-300 hover:text-white hover:scale-110 block transform transition duration-300">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-md font-semibold uppercase tracking-wider mb-5 footer-heading text-white">Our Locations</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><span class="font-medium">Agartala</span>, Tripura</li>
+                        <li><span class="font-medium">Shillong</span>, Meghalaya</li>
+                        <li><span class="font-medium">Kolkata</span>, West Bengal</li>
+                        <li><span class="font-medium">Bengaluru</span>, Karnataka</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-purple-400 pt-8 border-t border-gray-700">
+                &copy; <script>document.write(new Date().getFullYear())</script> XLayer Technologies Private Limited. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Recent Works Slider functionality
+        const recentWorksSlider = document.getElementById("recentWorksSlider");
+        function scrollLeftRecentWorks() {
+            recentWorksSlider.scrollBy({ left: -320, behavior: 'smooth' }); // Adjusted scroll amount for card width + gap
+        }
+        function scrollRightRecentWorks() {
+            recentWorksSlider.scrollBy({ left: 320, behavior: 'smooth' }); // Adjusted scroll amount for card width + gap
+        }
+
+        // Services Slider functionality
+        const servicesSlider = document.getElementById('servicesSlider');
+        function scrollLeftServices() {
+            servicesSlider.scrollBy({ left: -300, behavior: 'smooth' });
+        }
+        function scrollRightServices() {
+            servicesSlider.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - xLayer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-violet: #8B5CF6; /* Tailwind purple-500 */
+            --secondary-blue: #3B82F6; /* Tailwind blue-500 */
+            --dark-background: #0F172A; /* Slate-900 */
+            --dark-glass-bg: rgba(15, 23, 42, 0.7); /* Darker, more opaque glass */
+            --light-text: #E2E8F0; /* Slate-200 */
+            --accent-light-blue: #60A5FA; /* Blue-400 */
+        }
+
+        body {
+            background-color: var(--dark-background);
+            color: var(--light-text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .glass {
+            backdrop-filter: blur(30px) saturate(180%);
+            background-color: var(--dark-glass-bg);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3); /* Violet border */
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary-violet), var(--secondary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-button {
+            background-image: linear-gradient(to right, var(--primary-violet), var(--secondary-blue));
+            transition: all 0.3s ease;
+        }
+
+        .gradient-button:hover {
+            background-image: linear-gradient(to right, var(--secondary-blue), var(--primary-violet));
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+            outline: none;
+        }
+
+        .what-happens-next-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+        }
+
+        .step-indicator {
+            background-color: var(--secondary-blue);
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px; /* fully rounded */
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+        }
+
+        .office-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-link-hover:hover {
+            color: var(--secondary-blue);
+        }
+
+        .footer-social-icon:hover {
+            color: var(--secondary-blue);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 antialiased">
+    <header class="glass sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="images/Xlayer_logo_2-removebg-preview.png" alt="xLayer Logo" class="w-28 h-auto" />
+                
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-lg">
+                <a href="about_us.html" class="hover:text-accent-light-blue transition-colors">About</a>
+                <a href="our_works.html" class="hover:text-accent-light-blue transition-colors">Works</a>
+                <a href="case_studies.html" class="hover:text-accent-light-blue transition-colors">Case Studies</a>
+                <a href="get_in_touch.html" class="gradient-button px-6 py-2 rounded-lg text-white font-semibold shadow-xl">
+                    Get In Touch
+                </a>
+            </nav>
+
+            <button onclick="toggleMenu()" class="md:hidden text-slate-300 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-700 bg-slate-900/90 px-6 py-4 space-y-4">
+            <a href="about_us.html" class="block text-slate-200 hover:text-accent-light-blue text-lg">About</a>
+            <a href="our_works.html" class="block text-slate-200 hover:text-accent-light-blue text-lg">Works</a>
+            <a href="case_studies.html" class="block text-slate-200 hover:text-accent-light-blue text-lg">Case Studies</a>
+            <a href="get_in_touch.html" class="block gradient-button text-white text-center rounded-lg px-4 py-3 text-lg">Contact</a>
+        </div>
+    </header>
+
+    <main class="py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+            <div class="animate-fade-in-up">
+                <h1 class="text-5xl font-extrabold mb-4 gradient-text leading-tight">Connect With Us</h1>
+                <p class="text-lg text-slate-400 mb-8">
+                    Ready to start your next project? <a href="#" class="text-secondary-blue font-medium hover:underline">Book a Call</a>
+                    or fill out the form below. We'll get back to you once we’ve processed your request.
+                </p>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Your Name *" required />
+                        <input type="text" placeholder="Your Company *" required />
+                        <input type="email" placeholder="Email Address *" required />
+                        <input type="tel" placeholder="Phone Number *" required />
+                    </div>
+                    <textarea placeholder="Describe your project needs in detail..." rows="6" class="w-full"></textarea>
+                    <p class="text-sm text-slate-500">Please include some details about your project, budget, and timeline.</p>
+                    <button type="submit" class="gradient-button text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Submit Request
+                    </button>
+                    <p class="text-xs text-slate-500 mt-6">
+                        By clicking "Submit Request," you agree that xLayer will process your personal data in accordance with our
+                        <a href="#" class="text-secondary-blue hover:underline">Privacy Policy</a>.
+                    </p>
+                </form>
+            </div>
+
+            <div class="what-happens-next-card animate-fade-in-up delay-200">
+                <h2 class="text-3xl font-bold mb-8 text-primary-violet">What happens next?</h2>
+                <div class="space-y-8 relative">
+                    <div class="absolute left-3 top-0 bottom-0 w-1 bg-slate-700 rounded-full"></div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">1</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Initial Contact & NDA</h3>
+                            <p class="text-slate-400">
+                                Upon receiving your request, we'll promptly reach out to discuss your project needs in detail. We'll also sign a Non-Disclosure Agreement (NDA) to ensure the confidentiality of your information.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">2</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Proposal & Estimation</h3>
+                            <p class="text-slate-400">
+                                Our expert analysts and developers will meticulously examine your requirements and craft a comprehensive project proposal, outlining the scope of work, recommended team size, and detailed time and cost estimates.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">3</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Offer Discussion</h3>
+                            <p class="text-slate-400">
+                                We'll schedule a dedicated meeting to walk you through our proposal, answer any questions you may have, and collaborate to refine the offer until it perfectly aligns with your vision and budget.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">4</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Contract & Kick-off</h3>
+                            <p class="text-slate-400">
+                                Once we've reached a mutual agreement, we'll formalize our partnership with a contract, and our team will promptly initiate work on your project, bringing your ideas to life.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="inline-flex items-center px-5 py-2 text-sm font-medium text-primary-violet bg-primary-violet/20 rounded-full mb-6 border border-primary-violet/40">
+                <svg class="w-5 h-5 mr-2 text-primary-violet" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2C6.134 2 3 5.134 3 9c0 5.25 7 9 7 9s7-3.75 7-9c0-3.866-3.134-7-7-7zM5 9a5 5 0 1110 0c0 2.877-3.061 5.626-5 6.856C8.061 14.626 5 11.877 5 9zm5-2a2 2 0 100 4 2 2 0 000-4z" />
+                </svg>
+                Our Office Locations
+            </span>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-white">Find Us Across India</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="office-card">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="bg-secondary-blue text-white p-3 rounded-full shadow-md">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2C6.686 2 4 4.686 4 8c0 4.418 6 10 6 10s6-5.582 6-10c0-3.314-2.686-6-6-6zM6 8a4 4 0 118 0c0 2.651-2.919 5.968-4 7.12C8.919 13.968 6 10.651 6 8zm4-2a2 2 0 100 4 2 2 0 000-4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white">Agartala Office</h3>
+                    </div>
+                    <p class="text-base text-slate-400 mb-6">
+                        5th floor, DIT Park, ITI Rd, Indra Nagar, 79 Tilla, Agartala, Tripura 799006
+                    </p>
+                    <a href="https://maps.app.goo.gl/YourAgartalaMapLink" target="_blank" class="text-base font-medium text-secondary-blue hover:underline inline-flex items-center transition-colors">
+                        Get Direction
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.293 15.707a1 1 0 001.414 0l5.5-5.5a1 1 0 000-1.414l-5.5-5.5a1 1 0 00-1.414 1.414L13.586 9H4a1 1 0 000 2h9.586l-3.293 3.293a1 1 0 000 1.414z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="office-card">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="bg-secondary-blue text-white p-3 rounded-full shadow-md">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2C6.686 2 4 4.686 4 8c0 4.418 6 10 6 10s6-5.582 6-10c0-3.314-2.686-6-6-6zM6 8a4 4 0 118 0c0 2.651-2.919 5.968-4 7.12C8.919 13.968 6 10.651 6 8zm4-2a2 2 0 100 4 2 2 0 000-4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white">Kolkata Office</h3>
+                    </div>
+                    <p class="text-base text-slate-400 mb-6">
+                        404, 3rd floor, IIT Kharagpur Research Park, Newtown, New Town, West Bengal 700135
+                    </p>
+                    <a href="https://maps.app.goo.gl/YourKolkataMapLink" target="_blank" class="text-base font-medium text-secondary-blue hover:underline inline-flex items-center transition-colors">
+                        Get Direction
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.293 15.707a1 1 0 001.414 0l5.5-5.5a1 1 0 000-1.414l-5.5-5.5a1 1 0 00-1.414 1.414L13.586 9H4a1 1 0 000 2h9.586l-3.293 3.293a1 1 0 000 1.414z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="pt-16 md:pt-20 pb-8 bg-slate-950 border-t border-slate-700">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Registered Address</h3>
+                    <div class="space-y-5 text-sm text-slate-400">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 shrink-0 mt-0.5 text-primary-violet" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /> </svg>
+                            <p class="leading-relaxed">No 54, Bancha, 2nd A Main, 3rd Cross, Venxattar Layout, D S Palvo Extension, Bannerghatta Road, Bangalore – 560 076, India</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 shrink-0 mt-0.5 text-primary-violet" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /> </svg>
+                            <p class="leading-relaxed">5th Floor, IT Park Rd, Indira Nagar, 76 Tilla, Agartala, Tripura – 785008, India</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 shrink-0 mt-0.5 text-primary-violet" viewBox="0 0 20 20" fill="currentColor"> <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /> </svg>
+                            <a href="mailto:contact@xlayertechnologies.com" class="text-secondary-blue hover:underline transition-colors">contact@xlayertechnologies.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Company</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#about" class="text-slate-400 hover:text-secondary-blue transition-colors">About Us</a></li>
+                        <li><a href="#works" class="text-slate-400 hover:text-secondary-blue transition-colors">Our Works</a></li>
+                        <li><a href="#process" class="text-slate-400 hover:text-secondary-blue transition-colors">Our Process</a></li>
+                        <li><a href="#case-studies" class="text-slate-400 hover:text-secondary-blue transition-colors">Case Studies</a></li>
+                        <li><a href="#careers" class="text-slate-400 hover:text-secondary-blue transition-colors">Careers</a></li>
+                        <li><a href="#contact" class="text-slate-400 hover:text-secondary-blue transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-secondary-blue transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-secondary-blue transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Connect With Us</h3>
+                    <div class="flex space-x-6">
+                        <a href="#" title="LinkedIn" class="text-slate-400 footer-social-icon block">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="#" title="Twitter" class="text-slate-400 footer-social-icon block">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        </a>
+                        <a href="#" title="Facebook" class="text-slate-400 footer-social-icon block">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Our Locations</h3>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><span class="font-medium">Agartala</span>, Tripura</li>
+                        <li><span class="font-medium">Shillong</span>, Meghalaya</li>
+                        <li><span class="font-medium">Kolkata</span>, West Bengal</li>
+                        <li><span class="font-medium">Bengaluru</span>, Karnataka</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-500 pt-8 border-t border-slate-800">
+                &copy; <script>document.write(new Date().getFullYear())</script> XLayer Technologies Private Limited. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - xLayer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-violet: #8B5CF6; /* Tailwind purple-500 */
+            --secondary-blue: #3B82F6; /* Tailwind blue-500 */
+            --dark-background: #0F172A; /* Slate-900 */
+            --dark-glass-bg: rgba(15, 23, 42, 0.7); /* Darker, more opaque glass */
+            --light-text: #E2E8F0; /* Slate-200 */
+            --accent-light-blue: #60A5FA; /* Blue-400 */
+        }
+
+        body {
+            background-color: var(--dark-background);
+            color: var(--light-text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .glass {
+            backdrop-filter: blur(30px) saturate(180%);
+            background-color: var(--dark-glass-bg);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3); /* Violet border */
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary-violet), var(--secondary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-button {
+            background-image: linear-gradient(to right, var(--primary-violet), var(--secondary-blue));
+            transition: all 0.3s ease;
+        }
+
+        .gradient-button:hover {
+            background-image: linear-gradient(to right, var(--secondary-blue), var(--primary-violet));
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+            outline: none;
+        }
+
+        .what-happens-next-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+        }
+
+        .step-indicator {
+            background-color: var(--secondary-blue);
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px; /* fully rounded */
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+        }
+
+        .office-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-link-hover:hover {
+            color: var(--secondary-blue);
+        }
+
+        .footer-social-icon:hover {
+            color: var(--secondary-blue);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 antialiased">
+    <header class="glass sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="images/Xlayer_logo_2-removebg-preview.png" alt="xLayer Logo" class="w-28 h-auto" />
+                
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-lg">
+                <a href="about_us.html" class="hover:text-accent-light-blue transition-colors">About</a>
+                <a href="our_works.html" class="hover:text-accent-light-blue transition-colors">Works</a>
+                <a href="case_studies.html" class="hover:text-accent-light-blue transition-colors">Case Studies</a>
+                <a href="get_in_touch.html" class="gradient-button px-6 py-2 rounded-lg text-white font-semibold shadow-xl">
+                    Get In Touch
+                </a>
+            </nav>
+
+            <button onclick="toggleMenu()" class="md:hidden text-slate-300 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-700 bg-slate-900/90 px-6 py-4 space-y-4">
+            <a href="about_us.html" class="block text-slate-200 hover:text-accent-light-blue text-lg">About</a>
+            <a href="our_works.html" class="block text-slate-200 hover:text-accent-light-blue text-lg">Works</a>
+            <a href="case_studies.html" class="block text-slate-200 hover:text-accent-light-blue text-lg">Case Studies</a>
+            <a href="get_in_touch.html" class="block gradient-button text-white text-center rounded-lg px-4 py-3 text-lg">Contact</a>
+        </div>
+    </header>
+
+    <main class="py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+            <div class="animate-fade-in-up">
+                <h1 class="text-5xl font-extrabold mb-4 gradient-text leading-tight">Connect With Us</h1>
+                <p class="text-lg text-slate-400 mb-8">
+                    Ready to start your next project? <a href="#" class="text-secondary-blue font-medium hover:underline">Book a Call</a>
+                    or fill out the form below. We'll get back to you once we’ve processed your request.
+                </p>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Your Name *" required />
+                        <input type="text" placeholder="Your Company *" required />
+                        <input type="email" placeholder="Email Address *" required />
+                        <input type="tel" placeholder="Phone Number *" required />
+                    </div>
+                    <textarea placeholder="Describe your project needs in detail..." rows="6" class="w-full"></textarea>
+                    <p class="text-sm text-slate-500">Please include some details about your project, budget, and timeline.</p>
+                    <button type="submit" class="gradient-button text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Submit Request
+                    </button>
+                    <p class="text-xs text-slate-500 mt-6">
+                        By clicking "Submit Request," you agree that xLayer will process your personal data in accordance with our
+                        <a href="#" class="text-secondary-blue hover:underline">Privacy Policy</a>.
+                    </p>
+                </form>
+            </div>
+
+            <div class="what-happens-next-card animate-fade-in-up delay-200">
+                <h2 class="text-3xl font-bold mb-8 text-primary-violet">What happens next?</h2>
+                <div class="space-y-8 relative">
+                    <div class="absolute left-3 top-0 bottom-0 w-1 bg-slate-700 rounded-full"></div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">1</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Initial Contact & NDA</h3>
+                            <p class="text-slate-400">
+                                Upon receiving your request, we'll promptly reach out to discuss your project needs in detail. We'll also sign a Non-Disclosure Agreement (NDA) to ensure the confidentiality of your information.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">2</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Proposal & Estimation</h3>
+                            <p class="text-slate-400">
+                                Our expert analysts and developers will meticulously examine your requirements and craft a comprehensive project proposal, outlining the scope of work, recommended team size, and detailed time and cost estimates.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">3</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Offer Discussion</h3>
+                            <p class="text-slate-400">
+                                We'll schedule a dedicated meeting to walk you through our proposal, answer any questions you may have, and collaborate to refine the offer until it perfectly aligns with your vision and budget.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="step-indicator">4</div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Contract & Kick-off</h3>
+                            <p class="text-slate-400">
+                                Once we've reached a mutual agreement, we'll formalize our partnership with a contract, and our team will promptly initiate work on your project, bringing your ideas to life.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="inline-flex items-center px-5 py-2 text-sm font-medium text-primary-violet bg-primary-violet/20 rounded-full mb-6 border border-primary-violet/40">
+                <svg class="w-5 h-5 mr-2 text-primary-violet" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2C6.134 2 3 5.134 3 9c0 5.25 7 9 7 9s7-3.75 7-9c0-3.866-3.134-7-7-7zM5 9a5 5 0 1110 0c0 2.877-3.061 5.626-5 6.856C8.061 14.626 5 11.877 5 9zm5-2a2 2 0 100 4 2 2 0 000-4z" />
+                </svg>
+                Our Office Locations
+            </span>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-white">Find Us Across India</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="office-card">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="bg-secondary-blue text-white p-3 rounded-full shadow-md">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2C6.686 2 4 4.686 4 8c0 4.418 6 10 6 10s6-5.582 6-10c0-3.314-2.686-6-6-6zM6 8a4 4 0 118 0c0 2.651-2.919 5.968-4 7.12C8.919 13.968 6 10.651 6 8zm4-2a2 2 0 100 4 2 2 0 000-4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white">Agartala Office</h3>
+                    </div>
+                    <p class="text-base text-slate-400 mb-6">
+                        5th floor, DIT Park, ITI Rd, Indra Nagar, 79 Tilla, Agartala, Tripura 799006
+                    </p>
+                    <a href="https://maps.app.goo.gl/YourAgartalaMapLink" target="_blank" class="text-base font-medium text-secondary-blue hover:underline inline-flex items-center transition-colors">
+                        Get Direction
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.293 15.707a1 1 0 001.414 0l5.5-5.5a1 1 0 000-1.414l-5.5-5.5a1 1 0 00-1.414 1.414L13.586 9H4a1 1 0 000 2h9.586l-3.293 3.293a1 1 0 000 1.414z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="office-card">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="bg-secondary-blue text-white p-3 rounded-full shadow-md">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2C6.686 2 4 4.686 4 8c0 4.418 6 10 6 10s6-5.582 6-10c0-3.314-2.686-6-6-6zM6 8a4 4 0 118 0c0 2.651-2.919 5.968-4 7.12C8.919 13.968 6 10.651 6 8zm4-2a2 2 0 100 4 2 2 0 000-4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white">Kolkata Office</h3>
+                    </div>
+                    <p class="text-base text-slate-400 mb-6">
+                        404, 3rd floor, IIT Kharagpur Research Park, Newtown, New Town, West Bengal 700135
+                    </p>
+                    <a href="https://maps.app.goo.gl/YourKolkataMapLink" target="_blank" class="text-base font-medium text-secondary-blue hover:underline inline-flex items-center transition-colors">
+                        Get Direction
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.293 15.707a1 1 0 001.414 0l5.5-5.5a1 1 0 000-1.414l-5.5-5.5a1 1 0 00-1.414 1.414L13.586 9H4a1 1 0 000 2h9.586l-3.293 3.293a1 1 0 000 1.414z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="pt-16 md:pt-20 pb-8 bg-slate-950 border-t border-slate-700">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Registered Address</h3>
+                    <div class="space-y-5 text-sm text-slate-400">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 shrink-0 mt-0.5 text-primary-violet" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /> </svg>
+                            <p class="leading-relaxed">No 54, Bancha, 2nd A Main, 3rd Cross, Venxattar Layout, D S Palvo Extension, Bannerghatta Road, Bangalore – 560 076, India</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 shrink-0 mt-0.5 text-primary-violet" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /> </svg>
+                            <p class="leading-relaxed">5th Floor, IT Park Rd, Indira Nagar, 76 Tilla, Agartala, Tripura – 785008, India</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 shrink-0 mt-0.5 text-primary-violet" viewBox="0 0 20 20" fill="currentColor"> <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /> </svg>
+                            <a href="mailto:contact@xlayertechnologies.com" class="text-secondary-blue hover:underline transition-colors">contact@xlayertechnologies.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Company</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#about" class="text-slate-400 hover:text-secondary-blue transition-colors">About Us</a></li>
+                        <li><a href="#works" class="text-slate-400 hover:text-secondary-blue transition-colors">Our Works</a></li>
+                        <li><a href="#process" class="text-slate-400 hover:text-secondary-blue transition-colors">Our Process</a></li>
+                        <li><a href="#case-studies" class="text-slate-400 hover:text-secondary-blue transition-colors">Case Studies</a></li>
+                        <li><a href="#careers" class="text-slate-400 hover:text-secondary-blue transition-colors">Careers</a></li>
+                        <li><a href="#contact" class="text-slate-400 hover:text-secondary-blue transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-secondary-blue transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-secondary-blue transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Connect With Us</h3>
+                    <div class="flex space-x-6">
+                        <a href="#" title="LinkedIn" class="text-slate-400 footer-social-icon block">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="#" title="Twitter" class="text-slate-400 footer-social-icon block">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        </a>
+                        <a href="#" title="Facebook" class="text-slate-400 footer-social-icon block">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold uppercase tracking-wider mb-6 text-white">Our Locations</h3>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><span class="font-medium">Agartala</span>, Tripura</li>
+                        <li><span class="font-medium">Shillong</span>, Meghalaya</li>
+                        <li><span class="font-medium">Kolkata</span>, West Bengal</li>
+                        <li><span class="font-medium">Bengaluru</span>, Karnataka</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-500 pt-8 border-t border-slate-800">
+                &copy; <script>document.write(new Date().getFullYear())</script> XLayer Technologies Private Limited. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+>>>>>>> 7dedf804d0583e47ef60746eb94bfe2efeeb6f9a
+</html>

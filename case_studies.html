@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xLayer - Case Studies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2d185a 0%, #3a256b 60%, #1a103f 100%);
+            color: #e5e7fa;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Section background: blue-violet gradient matching header */
+        .section-bg-noise {
+            background: linear-gradient(135deg, #3a256b 0%, #2d185a 60%, #1a103f 100%);
+            position: relative;
+            isolation: isolate;
+        }
+
+        /* Enhanced noise texture */
+        .section-bg-noise::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Card styling: glassmorphism with blue-violet border, darker than background */
+        .card {
+            background-color: rgba(44, 62, 80, 0.22);
+            backdrop-filter: blur(24px);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1.5px solid #7b2ff2;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
+        }
+        .card:hover, .card-animated-border:hover {
+            background-color: rgba(30, 41, 59, 0.38);
+            border-color: #a993f8;
+            box-shadow: 0 12px 40px rgba(123, 47, 242, 0.18), 0 0 0 2px #7b2ff2 inset;
+            filter: brightness(0.97);
+            transform: translateY(-5px) scale(1.04);
+        }
+
+        /* Button styles: blue to violet gradient, darker on hover */
+        .btn {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
+            background: linear-gradient(90deg, #5a8dee 0%, #7b2ff2 100%);
+            color: #fff;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #2d185a 0%, #7b2ff2 100%);
+            box-shadow: 0 8px 24px rgba(123, 47, 242, 0.18);
+            filter: brightness(0.93);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        /* Secondary button */
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #7b2ff2;
+            color: #7b2ff2;
+        }
+        .btn-secondary:hover {
+            background: #2d185a;
+            color: #fff;
+            border-color: #a993f8;
+        }
+
+        /* Header styling */
+        header {
+            background-color: rgba(58, 37, 107, 0.92);
+            backdrop-filter: blur(32px);
+            border-bottom: 1px solid #7b2ff2;
+        }
+
+        /* Neon accent for important elements */
+        .section-title-accent {
+            color: #7b2ff2;
+            text-shadow: 0 0 15px rgba(123, 47, 242, 0.18);
+        }
+
+        /* Hero section overlay */
+        .hero-overlay-animated {
+            background: linear-gradient(135deg, rgba(90, 141, 238, 0.7), rgba(123, 47, 242, 0.18));
+            backdrop-filter: blur(8px);
+        }
+
+        /* Client logo hover effect */
+        .client-logo {
+            display: flex;
+            justify-content: center;
+            filter: grayscale(1);
+            opacity: 0.5;
+            transition: all 0.3s;
+            transform: none;
+        }
+        .client-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.10);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="relative bg-purple-950 text-white overflow-hidden sticky top-0 z-50 shadow-2xl border-b border-slate-700/50">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-800/30 via-purple-900/40 to-black/60 backdrop-blur-sm"></div>
+
+        <div class="absolute top-0 left-1/4 w-1/2 h-1 bg-white/10 blur-md rounded-full"></div>
+
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white flex items-center">
+                <span class="xlayer-x-logo"></span>
+                <img src="images/Xlayer_logo_2-removebg-preview.png" alt="Xlayer Logo" width="100" height="120">
+            </a>
+            <nav class="hidden md:flex items-center space-x-5 lg:space-x-7">
+                <a href="about_us.html" class="nav-link-animated text-slate-300 hover:text-sky-400 transition-colors duration-200">About Us</a>
+                <a href="our_works.html" class="nav-link-animated text-slate-300 hover:text-sky-400 transition-colors duration-200">Our Works</a>
+                <a href="case_studies.html" class="nav-link-animated text-sky-400 text-base font-semibold">Case Studies</a>
+                <a href="get_in_touch.html" class="btn btn-secondary text-sm px-5 py-2">Get In Touch</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-slate-300 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="relative z-10 md:hidden hidden bg-white/5 backdrop-blur-xl border-t border-white/10">
+            <a href="about_us.html" class="block px-6 py-3 text-slate-200 hover:bg-sky-600/50 transition-colors">About Us</a>
+            <a href="our_works.html" class="block px-6 py-3 text-slate-200 hover:bg-sky-600/50 transition-colors">Our Works</a>
+            <a href="case_studies.html" class="block px-6 py-3 text-sky-400 font-semibold bg-sky-600/20 transition-colors">Case Studies</a>
+            <a href="get_in_touch.html" class="block mx-4 my-3 btn btn-primary text-center">Get In Touch</a>
+        </div>
+    </header>
+
+    <section id="our-services" class="relative py-24 bg-slate-900 text-white section-bg-noise overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-tr from-purple-700/30 via-slate-800/60 to-blue-950/80 pointer-events-none"></div>
+
+        <div class="relative z-10 container mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-slate-100 mb-4">
+                Our <span class="text-purple-400">Comprehensive Services</span>
+            </h2>
+            <p class="text-center text-slate-300 mb-16 max-w-2xl mx-auto text-lg">
+                We offer a full spectrum of digital solutions, tailored to drive innovation and efficiency for your business.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="card bg-white/5 backdrop-blur-lg border border-purple-500/20 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col items-center text-center p-6">
+                    <svg class="w-16 h-16 text-purple-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <h3 class="font-semibold text-xl text-slate-100 mb-2">Web Development</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                        Crafting responsive, high-performance websites and web applications tailored to your business needs, from engaging front-ends to robust back-ends.
+                    </p>
+                </div>
+
+                <div class="card bg-white/5 backdrop-blur-lg border border-purple-500/20 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col items-center text-center p-6">
+                    <svg class="w-16 h-16 text-purple-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <h3 class="font-semibold text-xl text-slate-100 mb-2">Mobile App Development</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                        Building intuitive and feature-rich native and cross-platform mobile applications for iOS and Android, ensuring a seamless user experience.
+                    </p>
+                </div>
+
+                <div class="card bg-white/5 backdrop-blur-lg border border-purple-500/20 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col items-center text-center p-6">
+                    <svg class="w-16 h-16 text-purple-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <h3 class="font-semibold text-xl text-slate-100 mb-2">UI/UX Design</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                        Creating stunning and user-centric interfaces that prioritize usability, accessibility, and visual appeal to enhance user engagement.
+                    </p>
+                </div>
+
+                <div class="card bg-white/5 backdrop-blur-lg border border-purple-500/20 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col items-center text-center p-6">
+                    <svg class="w-16 h-16 text-purple-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <h3 class="font-semibold text-xl text-slate-100 mb-2">Cloud Solutions</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                        Leveraging leading cloud platforms (AWS, Azure, GCP) for scalable infrastructure, robust data storage, and efficient application deployment.
+                    </p>
+                </div>
+
+                <div class="card bg-white/5 backdrop-blur-lg border border-purple-500/20 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col items-center text-center p-6">
+                    <svg class="w-16 h-16 text-purple-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16v4m-2-2h4m2 10v4m-2-2h4m-4-2H9m6-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2"></path></svg>
+                    <h3 class="font-semibold text-xl text-slate-100 mb-2">AI/ML Development</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                        Integrating artificial intelligence and machine learning to create smart solutions that automate tasks, analyze data, and provide predictive insights.
+                    </p>
+                </div>
+
+                <div class="card bg-white/5 backdrop-blur-lg border border-purple-500/20 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col items-center text-center p-6">
+                    <svg class="w-16 h-16 text-purple-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c1.657 0 3 1.343 3 3v5c0 1.657-1.343 3-3 3S9 17.657 9 16v-5c0-1.657 1.343-3 3-3z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 20L4 4l2 2m0 0l4-4m-2 2h4m-4 0v4m-2 0h4m-4 0v4m-2 0h4m-4 0v4m-2 0h4m-4 0v4"></path></svg>
+                    <h3 class="font-semibold text-xl text-slate-100 mb-2">Data Engineering & Analytics</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                        Designing, building, and managing data pipelines for efficient data processing, storage, and advanced analytics to inform strategic decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="case-studies" class="relative py-24 bg-slate-900 text-white section-bg-noise overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-tr from-sky-700/30 via-slate-800/60 to-sky-950/80 pointer-events-none"></div>
+
+        <div class="relative z-10 container mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-slate-100 mb-4">
+                Our <span class="text-sky-400">Impactful Solutions</span>: Case Studies
+            </h2>
+            <p class="text-center text-slate-300 mb-16 max-w-2xl mx-auto text-lg">
+                We empower businesses by harnessing technology to achieve their strategic goals. Here are some of our proven solutions across industries:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col">
+                    <div class="relative h-56 w-full overflow-hidden">
+                        <img src="images/meg Tour.png" alt="Meghalaya Tourism" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-sky-300 font-semibold text-lg mb-1">Tourism & Travel</h3>
+                        <p class="font-medium text-slate-100 mb-3">Meghalaya Tourism Platform</p>
+                        <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                            A comprehensive digital platform with discovery, booking, hiking trails, and capacity-managed campsites for tourism growth.
+                        </p>
+                        <a href="Travels.html" class="mt-5 text-sky-400 hover:text-sky-300 text-sm font-semibold inline-block relative group">
+                            Read More
+                            <span class="block h-0.5 w-0 bg-sky-400 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col">
+                    <div class="relative h-56 w-full overflow-hidden">
+                        <img src="images/TSL.png" alt="TASL IPMI Project" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-sky-300 font-semibold text-lg mb-1">Embedded Systems</h3>
+                        <p class="font-medium text-slate-100 mb-3">TATA Advanced Systems Ltd (TASL)</p>
+                        <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                            Developed IPMI to monitor and manage UPS and PDUs across multiple critical zones with high efficiency and failover safety.
+                        </p>
+                        <a href="embaded_system.html" class="mt-5 text-sky-400 hover:text-sky-300 text-sm font-semibold inline-block relative group">
+                            Read More
+                            <span class="block h-0.5 w-0 bg-sky-400 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 transform duration-300 flex flex-col">
+                    <div class="relative h-56 w-full overflow-hidden">
+                        <img src="images/Tracking.png" alt="Tracking Project" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-sky-300 font-semibold text-lg mb-1">Intelligent Tracking</h3>
+                        <p class="font-medium text-slate-100 mb-3">Intelligent Tracking System</p>
+                        <p class="text-slate-300 text-sm leading-relaxed flex-grow">
+                            Built a GPS-based Public Transport Tracker (ITS) offering citizens live ETA via shelters and mobile app using IoT edge devices.
+                        </p>
+                        <a href="Tracking.html" class="mt-5 text-sky-400 hover:text-sky-300 text-sm font-semibold inline-block relative group">
+                            Read More
+                            <span class="block h-0.5 w-0 bg-sky-400 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-gradient-to-t from-[#130B32] via-[#1A103F] to-[#1A103F] text-slate-400 pt-12 pb-6 border-t border-purple-600/40">
+        <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+                <div class="sm:col-span-2 lg:col-span-1 space-y-4 text-sm">
+                    <h3 class="text-sm font-semibold text-slate-100 uppercase tracking-wider mb-3">Registered Address</h3>
+                    <div class="flex items-start space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400 flex-shrink-0 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                        <p>No 54, Bancha, 2nd A Main, 3rd Cross, Venxattar Layout, D S Palvo Extension, Bannerghatta Road, Bangalore – 560 076, India</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400 flex-shrink-0 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                        <p>5th Floor, IT Park Rd, Indira Nagar, 76 Tilla, Agartala, Tripura – 785008, India</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                        <a href="mailto:contact@xlayertechnologies.com" class="hover:text-cyan-400 transition-colors truncate block max-w-xs" title="contact@xlayertechnologies.com">
+                            contact@xlayertechnologies.com
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-100 uppercase tracking-wider mb-3">Company</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about_us.html" class="hover:text-cyan-400 transition-colors">About Us</a></li>
+                        <li><a href="our_works.html" class="hover:text-cyan-400 transition-colors">Our Works</a></li>
+                        <li><a href="index.html#process" class="hover:text-cyan-400 transition-colors">Our Process</a></li>
+                        <li><a href="case_studies.html" class="hover:text-cyan-400 transition-colors">Case Studies</a></li>
+                        <li><a href="index.html#careers" class="hover:text-cyan-400 transition-colors">Careers</a></li>
+                        <li><a href="index.html#contact" class="hover:text-cyan-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-100 uppercase tracking-wider mb-3">Connect With Us</h3>
+                    <div class="flex space-x-6">
+                        <a href="#" aria-label="LinkedIn" class="text-slate-400 hover:text-cyan-400 transition-transform hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="text-slate-400 hover:text-cyan-400 transition-transform hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="text-slate-400 hover:text-cyan-400 transition-transform hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-100 uppercase tracking-wider mb-3">Our Locations</h3>
+                    <ul class="space-y-1 text-sm">
+                        <li><span class="font-medium text-slate-200">Agartala</span>, Tripura</li>
+                        <li><span class="font-medium text-slate-200">Shillong</span>, Meghalaya</li>
+                        <li><span class="font-medium text-slate-200">Kolkata</span>, West Bengal</li>
+                        <li><span class="font-medium text-slate-200">Bengaluru</span>, Karnataka</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center text-xs text-slate-500 pt-6 border-t border-slate-700/70 select-none">
+                &copy; <script>document.write(new Date().getFullYear())</script> XLayer Technologies Private Limited. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
